@@ -1,0 +1,46 @@
+Evaluation of RandomForestClassifier on the following 'workclass' slices: 
+['Federal-gov' 'Private' 'Self-emp-inc' 'Self-emp-not-inc' 'Local-gov'
+ 'State-gov' 'Without-pay']
+-----------------------------------------------
+ - Slice 'Federal-gov' - 
+Precision: 0.8888888888888888
+Recall: 0.12307692307692308
+Fbeta: 0.21621621621621623
+(n total obs: 171, n true obs 65 , n false obs 106)
+-----------------------------------------------
+ - Slice 'Private' - 
+Precision: 0.9928057553956835
+Recall: 0.14270941054808686
+Fbeta: 0.24954792043399637
+(n total obs: 4478, n true obs 967 , n false obs 3511)
+-----------------------------------------------
+ - Slice 'Self-emp-inc' - 
+Precision: 0.9782608695652174
+Recall: 0.40540540540540543
+Fbeta: 0.5732484076433122
+(n total obs: 203, n true obs 111 , n false obs 92)
+-----------------------------------------------
+ - Slice 'Self-emp-not-inc' - 
+Precision: 1.0
+Recall: 0.14473684210526316
+Fbeta: 0.2528735632183908
+(n total obs: 512, n true obs 152 , n false obs 360)
+-----------------------------------------------
+ - Slice 'Local-gov' - 
+Precision: 1.0
+Recall: 0.13953488372093023
+Fbeta: 0.24489795918367346
+(n total obs: 405, n true obs 129 , n false obs 276)
+-----------------------------------------------
+ - Slice 'State-gov' - 
+Precision: 1.0
+Recall: 0.15254237288135594
+Fbeta: 0.2647058823529412
+(n total obs: 263, n true obs 59 , n false obs 204)
+-----------------------------------------------
+ - Slice 'Without-pay' - 
+Precision: 1.0
+Recall: 1.0
+Fbeta: 1.0
+(n total obs: 1, n true obs 0 , n false obs 1)
+-----------------------------------------------

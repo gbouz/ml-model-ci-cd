@@ -7,7 +7,13 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 from ml.data import process_data
-from ml.model import compute_model_metrics, inference, train_model, save_model
+from ml.model import (
+    compute_model_metrics, 
+    inference, 
+    train_model, 
+    save_model,
+    evaluate_slices,
+)
 
 # load in the data from remote storage
 df = pd.read_csv(StringIO(dvc.api.read('../data/census_clean.csv')))
@@ -49,3 +55,6 @@ precision, recall, fbeta = compute_model_metrics(y_test, preds)
 print(f"The precision score for {model.__class__.__name__} is: {precision}")
 print(f"The recall score for {model.__class__.__name__} is: {recall}")
 print(f"The fbeta score for {model.__class__.__name__} is: {fbeta}")
+
+# evaluate performance on 'workclass' slice
+evaluate_slices(model, test, X_test, y_test, cat_features[0])

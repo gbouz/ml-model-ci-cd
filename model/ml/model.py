@@ -95,3 +95,54 @@ def inference(model, X):
         Predictions from the model.
     """
     return model.predict(X)
+
+
+def evaluate_slices(model, df, X, y, selected_feature):
+    """ Evaluate model in slices of a given feature and save results.
+    Inputs
+    ------
+    model : RandomForestClassifier
+        Trained machine learning model.
+    df : pd.DataFrame
+        Dataframe used to slice the data in X and y.
+    X : np.array
+        Data used for prediction.
+    y : np.array
+        Data used for evaluating the predictions.
+    selected_feature : str
+        Column name of the selected feature to slice upon.
+    Returns
+    -------
+    None
+    """
+    slice_output = []
+    slice_tags = df[selected_feature].unique()
+    slice_output.append(
+        f"Evaluation of {model.__class__.__name__} on the following "
+        f"'{selected_feature}' slices: "
+    )
+    slice_output.append(slice_tags)
+    slice_output.append('-----------------------------------------------')
+    for tag in slice_tags:
+        slice_output.append(f" - Slice '{tag}' - ")
+        mapper = df[selected_feature]==tag
+        if mapper.sum() < 1:
+            slice_output[-1] += '[NO OBSERVATIONS - skipping evaluation]'
+            slice_output.append('-----------------------------------------------')
+            continue
+        preds = inference(model, X[mapper])
+        precision, recall, fbeta = compute_model_metrics(y[mapper], preds)
+        slice_output.append(f"Precision: {precision}")
+        slice_output.append(f"Recall: {recall}")
+        slice_output.append(f"Fbeta: {fbeta}")
+        n_true = y[mapper].sum()
+        slice_output.append(
+            f"(n total obs: {y[mapper].shape[0]}, n true obs {n_true} ,"
+            f" n false obs {y[mapper].shape[0] - n_true})"
+        )
+        slice_output.append('-----------------------------------------------')
+    print('===============================================')
+    with open('slice_output.txt', 'w') as filehandle:
+        for output in slice_output:
+            print(output)
+            filehandle.write(f'{output}\n')
