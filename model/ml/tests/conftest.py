@@ -13,7 +13,7 @@ class TrainData:
     y: np.ndarray
 
 
-@pytest.fixture
+@pytest.fixture(scope='package')
 def data():
     """Returns the train data"""
     return TrainData(
@@ -24,7 +24,7 @@ def data():
     )
 
 
-@pytest.fixture
+@pytest.fixture(scope='package')
 def model_RF(data):
     """Returns a trained RandomForestClassifier."""
     clf = RandomForestClassifier(max_depth=2, random_state=0)
