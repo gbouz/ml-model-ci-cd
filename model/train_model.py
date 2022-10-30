@@ -19,7 +19,7 @@ from ml.model import (
 df = pd.read_csv(StringIO(dvc.api.read('../data/census_clean.csv')))
 
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
-train, test = train_test_split(df, test_size=0.20)
+train, test = train_test_split(df, test_size=0.20, stratify=df['salary'], random_state=0)
 
 cat_features = [
     "workclass",
