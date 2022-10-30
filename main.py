@@ -56,6 +56,27 @@ class CensusData(BaseModel):
         'Thailand', 'Yugoslavia', 'El-Salvador', 'Trinadad&Tobago', 'Peru', 'Hong', 
         'Holand-Netherlands']
 
+    class Config:
+        schema_extra = {
+            "example": {
+                'age': 43,
+                'workclass': 'Private',
+                'fnlwgt': 123075,
+                'education': 'Doctorate',
+                'education_num': 16,
+                'marital_status': 'Married-civ-spouse',
+                'occupation': 'Exec-managerial',
+                'relationship': 'Husband',
+                'race': 'White',
+                'sex': 'Male',
+                'capital_gain': 0,
+                'capital_loss': 0,
+                'hours_per_week': 50,
+                'native_country': 'United-States',
+            }
+        }
+
+
 
 @app.get("/")
 async def get_items():
