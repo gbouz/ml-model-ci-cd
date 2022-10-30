@@ -1,4 +1,5 @@
 from joblib import dump, load
+from numpy import concatenate
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 
@@ -81,7 +82,7 @@ def compute_model_metrics(y, preds):
     return precision, recall, fbeta
 
 
-def inference(model, X):
+def inference(model, X, categorical_features=[], encoder=None):
     """ Run model inferences and return the predictions.
     Inputs
     ------
@@ -89,11 +90,21 @@ def inference(model, X):
         Trained machine learning model.
     X : np.array
         Data used for prediction.
+    categorical_features: list[str]
+        List containing the names of the categorical features (default=[])
+    encoder : OneHotEncoder
+        OneHotEncoder used in production to transformation 
+        the data to the right format.
     Returns
     -------
     preds : np.array
         Predictions from the model.
     """
+    if encoder:
+        X_categorical = X[categorical_features].values
+        X_continuous = X.drop(*[categorical_features], axis=1)
+        X_categorical = encoder.transform(X_categorical)
+        X = concatenate([X_continuous, X_categorical], axis=1)
     return model.predict(X)
 
 
