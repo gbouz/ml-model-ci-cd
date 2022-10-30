@@ -15,7 +15,7 @@ The remaining parameters are the default ones that can be found at the scikit-le
 
 ## Intended Use
 
-The model intends to allow predicting the income category of an american citizen, according to data points typicaly collected by a census survey. There are two categories 'high' and 'low', and the split is at 50K USD, where above it is considered 'high' and below or equals, 'low'. The usage is through an REST API via a POST request at ... The body of the POST request will have to contain the features discussed in the following section.
+The model intends to allow predicting the income category of an american citizen, according to data points typicaly collected by a census survey. There are two categories 'high' and 'low', and the split is at 50K USD, where above it is considered 'high' and below or equals, 'low'. The inference can be accessed via a POST request at `https://ml-model-ci-cd.herokuapp.com/predict/`. The body of the POST request will have to contain the features discussed in the following section.
 
 ## Training Data
 
